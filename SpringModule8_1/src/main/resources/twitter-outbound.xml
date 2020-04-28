@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:beans xmlns="http://www.springframework.org/schema/beans" 
+xmlns:int="http://www.springframework.org/schema/integration" 
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+xmlns:twitter="http://www.springframework.org/schema/integration/twitter" 
+xmlns:context="http://www.springframework.org/schema/context" 
+xmlns:integration="http://www.springframework.org/schema/integration" 
+xmlns:int-twitter="http://www.springframework.org/schema/integration/twitter" 
+xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
+		http://www.springframework.org/schema/integration http://www.springframework.org/schema/integration/spring-integration.xsd
+		http://www.springframework.org/schema/integration/twitter https://www.springframework.org/schema/integration/twitter/spring-integration-twitter.xsd">
+		<xsd:import namespace="http://www.springframework.org/schema/integration" schemaLocation="http://www.springframework.org/schema/integration/spring-integration-5.0.xsd"/>
+	<context:property-placeholder location="/twitter.properties"/>
+	<int:channel id="twitterOutbound"/>
+	<twitter:outbound-channel-adapter twitter-template="twitterTemplate" channel="twitterOutbound"/>
+	<xsd:bean id="twitterTemplate" class="org.springframework.social.twitter.api.impl.TwitterTemplate">
+		<constructor-arg value="${twitter.consumer-key}"/>
+		<constructor-arg value="${twitter.consumer-secret}"/>
+		<constructor-arg value="${twitter.access-token}"/>
+		<constructor-arg value="${twitter.access-token-secret}"/>
+	</xsd:bean>
+</xsd:beans>
