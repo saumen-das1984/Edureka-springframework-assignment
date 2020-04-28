@@ -1,0 +1,13 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<bean id="child" parent="father">
+		<property name="name" value="Arin"></property>
+	</bean>
+	<bean id="father" class="com.edureka.spring.intro.model.Father">
+		<property name="name" value="Saumen"></property>
+		<property name="surName" value="Das"></property>
+	</bean>
+
+</beans>
